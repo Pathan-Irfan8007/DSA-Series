@@ -15,54 +15,28 @@ Explanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
 '''
 # Ans :
 
-# def sumClosest(nums, target):
-#     n = len(nums)
-#     result = 999
-#     for i in range(n):
-#         for j in range(i+1,n):
-#             for k in range(j+1,n):
-#                 print(f"{nums[i]}{nums[j]}{nums[k]}", end=" = ")
-#                 sum = nums[i] + nums[j] +nums[k]
-#                 print(sum)
-#                 diff = max(sum, target) - min(sum, target)
-#                 if(diff < result):
-#                     result = diff
-#                     final_sum = sum
-#     print(final_sum)
-#     print()
-
 
 def sumClosest(nums, target):
-    n = len(nums)-1
-    i = 0
-    j = 1
-    k = 2
-    result = 999999999999999
-    
-    while True:
-        sum = nums[i] + nums[j] +nums[k]
-        diff = max(sum, target) - min(sum, target)
-        print(f"{nums[i]} {nums[j]} {nums[k]} = {sum}")
+    n = len(nums)
+    nums.sort()
 
-        if(diff < result):
-            result = diff
-            final_sum = sum
+    closest_sum = nums[0] + nums[1] + nums[2]
+    for i in range(n-2):
+        left = i+1
+        right = n-1
 
-        if(i == (n-2)):
-            break
-        if(k < n):
-            k += 1
-        elif(k == n and j < (n-1)):
-            j += 1
-            k = j+1
-        elif(k == n and j == (n-1) and i < (n-2)):
-            i += 1
-            j = i+1
-            k = j+1
+        while left < right:
+            current_sum = nums[i] + nums[left] + nums[right]
+            if(abs(current_sum - target) < abs(closest_sum - target)):
+                closest_sum = current_sum
 
+            if(current_sum == target):
+                return current_sum
+            elif(current_sum > target):
+                right -= 1
+            else:
+                left += 1
+    return closest_sum
 
-    print(final_sum , end="\n\n")
-
-sumClosest([0,1,2,3,4], 1)
-# sumClosest([4,0,5,-5,3,3,0,-4,-5], -2)
-# sumClosest([0,0,0], 1)
+print(sumClosest([-1,2,1,-4], 1))
+print(sumClosest([0,0,0], 1))
