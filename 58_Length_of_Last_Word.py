@@ -21,14 +21,21 @@ Explanation: The last word is "joyboy" with length 6.
 
 def lengthOfLastWord(s):
     length = 0
-    for char in s:
-        if char is " ":
-            print("Space")
+    i = len(s) - 1
+    while(i >= 0):
+        if(s[i] == " "):
+            i -= 1
+            continue
         else:
-            print(f"char = {char}")
             length += 1
-            if char is " ":
-                print(f"Done {length}")
-                return
+            if(s[i-1] == " "):
+                break
+        i -= 1
 
-lengthOfLastWord("Hello world")
+    print(length)
+        
+
+
+lengthOfLastWord("Hello World")
+lengthOfLastWord("   fly me   to   the moon  ")
+lengthOfLastWord("luffy is still joyboy")
