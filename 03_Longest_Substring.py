@@ -41,31 +41,29 @@ def longestSubstring(s):
             
     return sub_str, result
 
-print(longestSubstring("abcabcbb"))
-print(longestSubstring("bbbbb"))
-print(longestSubstring("pwwkew"))
-print(longestSubstring(""))
+# print(longestSubstring("abcabcbb"))
+# print(longestSubstring("bbbbb"))
+# print(longestSubstring("pwwkew"))
+# print(longestSubstring(""))
 
 
 def longestSubstring2(s):
-    n = len(s)
+    seen = set()
     i = 0
-    j = 0
-    sub_str = []
-    temp = ""
-    while(i < n):
-        if(j < n and s[j] in temp):
-            result = s[i:j]
-            sub_str.append(result)
+    max_len = 0
+
+    for j in range(len(s)):
+        while s[j] in seen:
+            seen.remove(s[i])
             i += 1
-            j += 1
-            temp = result[i:j]
-        else:
-            temp += s[j]
-            j += 1
-    return sub_str
+
+        seen.add(s[j])
+        max_len = max(max_len, j - i + 1)
+
+    return max_len
 
 
 print(longestSubstring2("abcabcbb"))
-
+print(longestSubstring2("bbbbb"))
+print(longestSubstring2("pwwkew"))
 
