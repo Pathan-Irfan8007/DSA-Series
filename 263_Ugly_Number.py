@@ -20,16 +20,28 @@ Explanation: 14 is not ugly since it includes the prime factor 7.
 # Ans :
 
 def isUgly(n):
-    fact = []
-    temp = [2,3,5]
-    for i in range(1, int(n**0.5)+1):
-        if(n % i == 0):
-            fact.append(i)
-            if(n//i not in fact):
-                fact.append(n//i)
 
-    fact.sort()
-    return fact
+    num = n
+    if(num < 1):
+        return False
+    while True:
+        if(num % 2 == 0):
+            num = num // 2    
+        elif(num % 3 == 0):
+            num = num // 3
+        elif(num % 5 == 0):
+            num = num // 5
+        elif(num == 1):
+            return True
+        else:
+            return False
+        
                 
-print(isUgly(6))
-print(isUgly(14))
+# print(isUgly(6))
+# print(isUgly(1))
+# print(isUgly(14))
+
+print(isUgly(-15))
+# print(isUgly(125))
+# print(isUgly(75))
+# print(isUgly(50))
