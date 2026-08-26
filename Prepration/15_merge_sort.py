@@ -20,7 +20,20 @@ def mergeSortedArray(arr1, arr2):
         while j<m:
             result.append(arr2[j])
             j += 1
-
     return result
 
-print(mergeSortedArray([1,3,5,7], [2,4,6,8,10,12]))
+# print(mergeSortedArray([1,3,5,7], [2,4,6,8,10,12]))
+
+def mergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left_half = arr[:mid]
+    right_half = arr[mid:]
+
+    left_half = mergeSort(left_half)
+    right_half = mergeSort(right_half)
+
+    return mergeSortedArray(left_half, right_half)
+
+print(mergeSort([8,4,1,6,2,9,3,7]))
