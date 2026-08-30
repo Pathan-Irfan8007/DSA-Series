@@ -32,9 +32,12 @@ def spiralOrder(matrix):
 
 # spiralOrder([[1,2,3],[4,5,6],[7,8,9]])
 
+
+# ---------- Optimal ----------
+
 def spiralOrder2(matrix):
     top, left = 0, 0
-    bottom, right = len(matrix), len(matrix[0])
+    bottom, right = len(matrix)-1, len(matrix[0])-1
     result = []
 
     while top <= bottom and left <= right:
@@ -64,3 +67,4 @@ def spiralOrder2(matrix):
     return result
 
 print(spiralOrder2([[1,2,3],[4,5,6],[7,8,9]]))
+print(spiralOrder2([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
