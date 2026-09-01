@@ -19,26 +19,32 @@ def binarySearch(nums, target):
 
 # ---------- Lower & Upper Bound ----------
 def lowUpBound(nums, target):
-    x, y = -1, -1
+    lb, ub = -1, -1
+
+    # Lower Bound
     left = 0
     right = len(nums) - 1
-
     while left <= right:
         mid = (left + right) // 2
 
-        if nums[mid] == target:
-            x, y = mid, mid
-            while x > left and nums[x] == nums[x-1]:      # Lower Bound 
-                x -= 1
-            while y < right and nums[y] == nums[y+1]:      # Upper Bound
-                y += 1
-            break
-            
-        elif nums[mid] < target:
-            left = mid + 1
-        else:
+        if nums[mid] >= target:
+            lb = mid
             right = mid - 1
+        else:
+            left = mid + 1
 
-    return [x, y]
+    # Upper Bound
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
 
-print(lowUpBound([0,0,1,1,1,1,2,3,4], 4))
+        if nums[mid] <= target:
+            ub = mid
+            left += 1
+        else:
+            right -= 1
+
+    return [lb, ub]
+
+print(lowUpBound([0,0,1,1,1,1,2,3,4], 1))
