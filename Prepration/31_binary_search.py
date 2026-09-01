@@ -45,6 +45,8 @@ def lowUpBound(nums, target):
         else:
             right -= 1
 
-    return [lb, ub]
+    return [lb, ub, ub-lb+1]
 
 print(lowUpBound([0,0,1,1,1,1,2,3,4], 1))
+
+
